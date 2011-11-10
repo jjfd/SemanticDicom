@@ -1,0 +1,2 @@
+dicom is widely used in medical data exchange. But semantic of the services need to be addessed so that dynamic automated discovery and invocation becomes possible.
+This project tests use OWL-S to manifest DICOM service, and allows client to invoke them at semantic level.
