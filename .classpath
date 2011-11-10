@@ -9,5 +9,6 @@
 	<classpathentry kind="lib" path="lib/slf4j-log4j12-1.6.1.jar"/>
 	<classpathentry kind="lib" path="lib/dcm4che-net-2.0.25.jar"/>
 	<classpathentry kind="lib" path="lib/dcm4che-tool-dcmecho-2.0.25.jar"/>
+	<classpathentry kind="lib" path="lib/dcm4che-tool-dcmqr-2.0.25.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
