@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE uridef [
+  <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns">
+  <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema">
+  <!ENTITY owl "http://www.w3.org/2002/07/owl">
+  <!ENTITY xsd "http://www.w3.org/2001/XMLSchema">
+  <!ENTITY service "http://www.daml.org/services/owl-s/1.2/Service.owl">
+  <!ENTITY profile "http://www.daml.org/services/owl-s/1.2/Profile.owl">
+  <!ENTITY process "http://www.daml.org/services/owl-s/1.2/Process.owl">
+  <!ENTITY grounding "N:/InterfaceEngine/semantic/Grounding_modified.owl">
+  <!ENTITY groundingWSDL "http://cheeso.members.winisp.net/books/books.asmx?WSDL">
+  <!ENTITY mind "http://on.cs.unibas.ch/owl-s/1.2/MindswapProfileHierarchy.owl">
+  <!ENTITY bibtex "http://purl.org/net/nknouf/ns/bibtex">
+  <!ENTITY THIS "N:/InterfaceEngine/semantic/SemanticDicom/Echo.owl">
+]>
+<rdf:RDF
+  xmlns:rdf="&rdf;#"
+  xmlns:rdfs="&rdfs;#"
+  xmlns:owl="&owl;#"
+  xmlns:xsd="&xsd;#"
+  xmlns:service="&service;#"
+  xmlns:profile="&profile;#"
+  xmlns:process="&process;#"
+  xmlns:grounding="&grounding;#"
+  xmlns:bibtex="&bibtex;#"
+  xmlns:mind="&mind;#"
+  xmlns="&THIS;#"
+  xml:base="&THIS;">
+
+<owl:Ontology rdf:about="">
+	<owl:imports rdf:resource="&service;"/>
+	<owl:imports rdf:resource="&profile;"/>
+	<owl:imports rdf:resource="&process;"/>
+	<owl:imports rdf:resource="&grounding;"/>
+   <!-- use the cached version for bibtex ontology -->
+   <owl:imports rdf:resource="http://on.cs.unibas.ch/owl/2003/12/bibtex.owl"/>
+   <owl:versionInfo>$Id: Echo.owl 2578 2011-02-04 16:58:17Z thorsten $</owl:versionInfo>
+</owl:Ontology>
+
+<!-- Service description -->
+<service:Service rdf:ID="EchoService">
+	<service:presents rdf:resource="#EchoProfile"/>
+
+	<service:describedBy rdf:resource="#EchoProcess"/>
+
+	<service:supports rdf:resource="#EchoGrounding"/>
+</service:Service>
+
+<!-- Profile description -->
+<profile:Profile rdf:ID="EchoProfile">
+	<service:presentedBy rdf:resource="#EchoService"/>
+
+	<profile:serviceName xml:lang="en">Echo</profile:serviceName>
+	<profile:textDescription xml:lang="en">This service returns the information of a patient whose name matches the given string.</profile:textDescription>
+
+</profile:Profile>
+
+<!-- Process description -->
+
+<process:AtomicProcess rdf:ID="EchoProcess">
+	<service:describes rdf:resource="#EchoService"/>
+</process:AtomicProcess>
+
+
+
+<!-- Grounding description -->
+<grounding:DicomGrounding rdf:ID="PatientFinderGrounding">
+	<service:supportedBy rdf:resource="#PatientFinderService"/>
+	<grounding:hasAtomicProcessGrounding rdf:resource="#PatientFinderProcessGrounding"/>
+</grounding:DicomGrounding>
+
+<grounding:DicomAtomicProcessGrounding rdf:ID="BookFinderProcessGrounding">
+	<grounding:owlsProcess rdf:resource="#PatientFinderProcess"/>
+	<grounding:dicomOperation>
+		<grounding:DicomOperationRef>
+			<grounding:dicomservice rdf:datatype="&xsd;#Literal">127.0.0.1</grounding:dicomservice>
+			<grounding:dicomport rdf:datatype="&xsd;#integer">5678</grounding:dicomport>
+		</grounding:DicomOperationRef>
+	</grounding:dicomOperation>
+</grounding:DicomAtomicProcessGrounding>
+
+</rdf:RDF>

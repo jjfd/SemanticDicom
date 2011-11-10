@@ -1,0 +1,838 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY service "http://www.daml.org/services/owl-s/1.2/Service.owl#" >
+    <!ENTITY process "http://www.daml.org/services/owl-s/1.2/Process.owl#" >
+    <!ENTITY shadow-rdf "http://www.daml.org/services/owl-s/1.2/generic/ObjectList.owl#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.daml.org/services/owl-s/1.2/Grounding.owl#"
+     xml:base="http://www.daml.org/services/owl-s/1.2/Grounding.owl"
+     xmlns:process="http://www.daml.org/services/owl-s/1.2/Process.owl#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:service="http://www.daml.org/services/owl-s/1.2/Service.owl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:shadow-rdf="http://www.daml.org/services/owl-s/1.2/generic/ObjectList.owl#">
+    <owl:Ontology rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl">
+        <owl:versionInfo>
+    $Id: Grounding.owl,v 1.38 2006/01/04 21:41:56 martin Exp $
+  </owl:versionInfo>
+        <rdfs:comment>
+    Upper-level OWL ontology for Groundings that employ WSDL.
+    Part of the OWL-S ontology; see http://www.daml.org/services/.
+
+    This version is intended for use with WSDL 1.1.  The OWL-S
+    Coalition plans to produce a future version for use with WSDL 2.0,
+    when it has been finalized (or nearly so).
+
+    Note that other approaches to grounding may be accommodated
+    within the OWL-S framework.  This is the only approach produced
+    to date by the OWL-S Coalition.
+
+    For notes on version history, see 
+        http://www.daml.org/services/owl-s/1.2/status.html.    
+  </rdfs:comment>
+        <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Process.owl"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.daml.org/services/owl-s/1.2/Grounding.owl#OWLObjectProperty_00000147772990403017 -->
+
+    <owl:ObjectProperty rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#OWLObjectProperty_00000147772990403017">
+        <rdfs:label>hl7Operation</rdfs:label>
+        <rdfs:domain rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#OWLClass_00000147722641700861"/>
+        <rdfs:range rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#OWLClass_00000147750390287698"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.daml.org/services/owl-s/1.2/Grounding.owl#OWLObjectProperty_00000197364669287376 -->
+
+    <owl:ObjectProperty rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#OWLObjectProperty_00000197364669287376">
+        <rdfs:label>dicomOperation</rdfs:label>
+        <rdfs:range rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#OWLClass_00000195886841330864"/>
+        <rdfs:domain rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#OWLClass_00000195908121505513"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.daml.org/services/owl-s/1.2/Grounding.owl#hasAtomicProcessGrounding -->
+
+    <owl:ObjectProperty rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#hasAtomicProcessGrounding">
+        <rdfs:range rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#AtomicProcessGrounding"/>
+        <rdfs:domain rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#Grounding"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.daml.org/services/owl-s/1.2/Grounding.owl#owlsParameter -->
+
+    <owl:ObjectProperty rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#owlsParameter">
+        <rdfs:comment>
+    An input or output property of an atomic process.
+  </rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#MessageMap"/>
+        <rdfs:range rdf:resource="&process;Parameter"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.daml.org/services/owl-s/1.2/Grounding.owl#owlsProcess -->
+
+    <owl:ObjectProperty rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#owlsProcess">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:comment>
+    The atomic process to which this grounding applies.
+  </rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#AtomicProcessGrounding"/>
+        <rdfs:range rdf:resource="&process;AtomicProcess"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.daml.org/services/owl-s/1.2/Grounding.owl#wsdlInput -->
+
+    <owl:ObjectProperty rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#wsdlInput">
+        <rdfs:comment>
+    There should be one instance of this property for each
+    message part of the WSDL input message.
+  </rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#WsdlAtomicProcessGrounding"/>
+        <rdfs:range rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#WsdlInputMessageMap"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.daml.org/services/owl-s/1.2/Grounding.owl#wsdlOperation -->
+
+    <owl:ObjectProperty rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#wsdlOperation">
+        <rdfs:comment>
+    A WSDL operation to which the atomic process
+    (referenced by owlsProcess) corresponds.
+  </rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#WsdlAtomicProcessGrounding"/>
+        <rdfs:range rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#WsdlOperationRef"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.daml.org/services/owl-s/1.2/Grounding.owl#wsdlOutput -->
+
+    <owl:ObjectProperty rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#wsdlOutput">
+        <rdfs:comment>
+    There should be one instance of this property for each
+    output of the atomic process.
+  </rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#WsdlAtomicProcessGrounding"/>
+        <rdfs:range rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#WsdlOutputMessageMap"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.daml.org/services/owl-s/1.2/Grounding.owl#OWLDataProperty_00000197544610457708 -->
+
+    <owl:DatatypeProperty rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#OWLDataProperty_00000197544610457708">
+        <rdfs:label>hl7Version</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.daml.org/services/owl-s/1.2/Grounding.owl#OWLDataProperty_00000197971869130825 -->
+
+    <owl:DatatypeProperty rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#OWLDataProperty_00000197971869130825">
+        <rdfs:label>dicomService</rdfs:label>
+        <rdfs:comment>IP of dicom server</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#OWLClass_00000195908121505513"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.daml.org/services/owl-s/1.2/Grounding.owl#OWLDataProperty_00000198000245034683 -->
+
+    <owl:DatatypeProperty rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#OWLDataProperty_00000198000245034683">
+        <rdfs:label>dicomPort</rdfs:label>
+        <rdfs:comment>port of dicom server</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#OWLClass_00000195908121505513"/>
+        <rdfs:range rdf:resource="&xsd;integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.daml.org/services/owl-s/1.2/Grounding.owl#OWLDataProperty_00000198018396833716 -->
+
+    <owl:DatatypeProperty rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#OWLDataProperty_00000198018396833716">
+        <rdfs:label>dicomMessage</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.daml.org/services/owl-s/1.2/Grounding.owl#operation -->
+
+    <owl:DatatypeProperty rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#operation">
+        <rdfs:domain rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#WsdlOperationRef"/>
+        <rdfs:range rdf:resource="&xsd;anyURI"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.daml.org/services/owl-s/1.2/Grounding.owl#portType -->
+
+    <owl:DatatypeProperty rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#portType">
+        <rdfs:domain rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#WsdlOperationRef"/>
+        <rdfs:range rdf:resource="&xsd;anyURI"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.daml.org/services/owl-s/1.2/Grounding.owl#wsdlDocument -->
+
+    <owl:DatatypeProperty rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#wsdlDocument">
+        <rdfs:comment>
+    A URI indicating a WSDL document to
+    which this grounding refers.  This isn&#39;t
+    essential; primarily for convenience as documentation.
+  </rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#WsdlAtomicProcessGrounding"/>
+        <rdfs:range rdf:resource="&xsd;anyURI"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.daml.org/services/owl-s/1.2/Grounding.owl#wsdlInputMessage -->
+
+    <owl:DatatypeProperty rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#wsdlInputMessage">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:comment>
+    A URI for the WSDL input message element corresponding
+    to the inputs of the atomic process.
+  </rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#WsdlAtomicProcessGrounding"/>
+        <rdfs:range rdf:resource="&xsd;anyURI"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.daml.org/services/owl-s/1.2/Grounding.owl#wsdlMessagePart -->
+
+    <owl:DatatypeProperty rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#wsdlMessagePart">
+        <rdfs:comment>
+    A URI for a WSDL message part element.
+  </rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#WsdlMessageMap"/>
+        <rdfs:range rdf:resource="&xsd;anyURI"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.daml.org/services/owl-s/1.2/Grounding.owl#wsdlOutputMessage -->
+
+    <owl:DatatypeProperty rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#wsdlOutputMessage">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:comment>
+    A URI for the WSDL message element corresponding
+    to the outputs of the atomic process.
+  </rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#WsdlAtomicProcessGrounding"/>
+        <rdfs:range rdf:resource="&xsd;anyURI"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.daml.org/services/owl-s/1.2/Grounding.owl#wsdlPort -->
+
+    <owl:DatatypeProperty rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#wsdlPort">
+        <rdfs:comment>
+    A URI for a WSDL Port that provides the operation to which 
+    this atomic process is grounded.
+  </rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#WsdlAtomicProcessGrounding"/>
+        <rdfs:range rdf:resource="&xsd;anyURI"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.daml.org/services/owl-s/1.2/Grounding.owl#wsdlService -->
+
+    <owl:DatatypeProperty rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#wsdlService">
+        <rdfs:comment>
+    A URI for a WSDL Service that provides the operation to which 
+    this atomic process is grounded.
+  </rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#WsdlAtomicProcessGrounding"/>
+        <rdfs:range rdf:resource="&xsd;anyURI"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.daml.org/services/owl-s/1.2/Grounding.owl#wsdlVersion -->
+
+    <owl:DatatypeProperty rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#wsdlVersion">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:comment>
+    A URI indicating the version of WSDL being used.
+  </rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#WsdlAtomicProcessGrounding"/>
+        <rdfs:range rdf:resource="&xsd;anyURI"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.daml.org/services/owl-s/1.2/Grounding.owl#xsltTransformation -->
+
+    <owl:DatatypeProperty rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#xsltTransformation">
+        <rdfs:comment>
+    XSLT Tranformation to transform OWL-S parameters (inputs and outputs) 
+    to and from WSDL messages.  This property exists mainly for declaring
+    a cardinality restriction, and should not be instantiated
+    directly.  Instantiate xsltTransformationString or xsltTransformationURI.
+    (Ranges are specified with the sub properties.)
+  </rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#WsdlMessageMap"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.daml.org/services/owl-s/1.2/Grounding.owl#xsltTransformationString -->
+
+    <owl:DatatypeProperty rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#xsltTransformationString">
+        <rdfs:comment>
+    A string giving an XSLT Tranformation.
+  </rdfs:comment>
+        <rdfs:subPropertyOf rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#xsltTransformation"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.daml.org/services/owl-s/1.2/Grounding.owl#xsltTransformationURI -->
+
+    <owl:DatatypeProperty rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#xsltTransformationURI">
+        <rdfs:comment>
+    A URI for an XSLT Tranformation.
+  </rdfs:comment>
+        <rdfs:subPropertyOf rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#xsltTransformation"/>
+        <rdfs:range rdf:resource="&xsd;anyURI"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.daml.org/services/owl-s/1.2/Grounding.owl#AtomicProcessGrounding -->
+
+    <owl:Class rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#AtomicProcessGrounding">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#owlsProcess"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>
+    A class that relates elements of a OWL-S atomic process to a
+    WSDL specification.
+
+    Each instance of AtomicProcessGrounding must have exactly one
+    value for owlsProcess. Rest of the AtomicProcessGrounding depends
+    on the specifics of the grounding type. 
+  </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.daml.org/services/owl-s/1.2/Grounding.owl#DirectInputMessageMap -->
+
+    <owl:Class rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#DirectInputMessageMap">
+        <rdfs:subClassOf rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#WsdlInputMessageMap"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#owlsParameter"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#xsltTransformation"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#XSLTInputMessageMap"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.daml.org/services/owl-s/1.2/Grounding.owl#DirectOutputMessageMap -->
+
+    <owl:Class rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#DirectOutputMessageMap">
+        <rdfs:subClassOf rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#WsdlOutputMessageMap"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#xsltTransformation"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#wsdlMessagePart"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#XSLTOutputMessageMap"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.daml.org/services/owl-s/1.2/Grounding.owl#Grounding -->
+
+    <owl:Class rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#Grounding">
+        <rdfs:subClassOf rdf:resource="&service;ServiceGrounding"/>
+        <rdfs:comment>
+    A Grounding is just a collection of AtomicProcessGrounding
+    instances, one for each atomic process in the process model.    
+  </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.daml.org/services/owl-s/1.2/Grounding.owl#InputMessageMap -->
+
+    <owl:Class rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#InputMessageMap">
+        <rdfs:subClassOf rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#MessageMap"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#owlsParameter"/>
+                <owl:allValuesFrom rdf:resource="&process;Input"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>
+    A MessageMap that maps inputs to grounding specification
+  </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.daml.org/services/owl-s/1.2/Grounding.owl#MessageMap -->
+
+    <owl:Class rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#MessageMap">
+        <rdfs:comment>
+    A class used to map parameters in OWL-S to the parameters
+    in the grounded operation. owlsParamater property is used
+    to specify the OWL-S parameter. 
+  </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.daml.org/services/owl-s/1.2/Grounding.owl#OWLClass_00000147722641700861 -->
+
+    <owl:Class rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#OWLClass_00000147722641700861">
+        <rdfs:label>HL7AtomicProcessGrounding</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#AtomicProcessGrounding"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#OWLObjectProperty_00000147772990403017"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.daml.org/services/owl-s/1.2/Grounding.owl#OWLClass_00000147750390287698 -->
+
+    <owl:Class rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#OWLClass_00000147750390287698">
+        <rdfs:label>HL7OperationRef</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.daml.org/services/owl-s/1.2/Grounding.owl#OWLClass_00000147888356228219 -->
+
+    <owl:Class rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#OWLClass_00000147888356228219">
+        <rdfs:label>HL7Grounding</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#Grounding"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#hasAtomicProcessGrounding"/>
+                <owl:allValuesFrom rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#OWLClass_00000147722641700861"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>HL7Operation  is a grounding the binds a process to a hl7 operation</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.daml.org/services/owl-s/1.2/Grounding.owl#OWLClass_00000195871428870289 -->
+
+    <owl:Class rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#OWLClass_00000195871428870289">
+        <rdfs:label>DicomGrounding</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#Grounding"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#hasAtomicProcessGrounding"/>
+                <owl:allValuesFrom rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#OWLClass_00000195908121505513"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.daml.org/services/owl-s/1.2/Grounding.owl#OWLClass_00000195886841330864 -->
+
+    <owl:Class rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#OWLClass_00000195886841330864">
+        <rdfs:label>DicomOperationRef</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.daml.org/services/owl-s/1.2/Grounding.owl#OWLClass_00000195908121505513 -->
+
+    <owl:Class rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#OWLClass_00000195908121505513">
+        <rdfs:label>DicomAtomicProcessGrounding</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#AtomicProcessGrounding"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#OWLObjectProperty_00000197364669287376"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment> Each instance of DicomAtomicProcessGrounding must have exactly one
+    value for owlsProcess and exactly one for dicomOperation, which sets up
+    a one-to-one correspondence between an atomic process and a DICOM
+    operation.
+
+    In addition, for each message part of the relevant DICOM input message,
+    there must be exactly one value of dicomInput.  For each output of the
+    atomic process, there must be exactly one value of dicomOutput. These
+    property instances show the correspondences between OWL-S
+    inputs/outputs and DICOM message parts.  In addition, single values are
+    recommended (but not required) for dicomInputMessage and
+    dicomOutputMessage.
+
+    Note that the value of dicomOperation may or may not uniquely identify
+    a particular DICOM port with which to interact.  If there are multiple
+    such ports offering the specified operation, an OWL-S enactment engine
+    is free to choose any of these ports.  If it is desired to further
+    constrain the choice of ports, a DicomAtomicProcessGrounding may do so
+    by specifying any number of values for dicomService and/or dicomPort.</rdfs:comment>
+        <rdfs:comment>A class that relates elements of a OWL-S atomic process to a
+    DICOM specification.
+  </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.daml.org/services/owl-s/1.2/Grounding.owl#OutputMessageMap -->
+
+    <owl:Class rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#OutputMessageMap">
+        <rdfs:subClassOf rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#MessageMap"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#owlsParameter"/>
+                <owl:allValuesFrom rdf:resource="&process;Output"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>
+    A MessageMap that maps outputs to grounding specification
+  </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.daml.org/services/owl-s/1.2/Grounding.owl#WsdlAtomicProcessGrounding -->
+
+    <owl:Class rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#WsdlAtomicProcessGrounding">
+        <rdfs:subClassOf rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#AtomicProcessGrounding"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#wsdlOperation"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>
+    A class that relates elements of a OWL-S atomic process to a
+    WSDL specification.
+  </rdfs:comment>
+        <rdfs:comment>
+    Each instance of WsdlAtomicProcessGrounding must have exactly one
+    value for owlsProcess and exactly one for wsdlOperation, which sets up
+    a one-to-one correspondence between an atomic process and a WSDL
+    operation.
+
+    In addition, for each message part of the relevant WSDL input message,
+    there must be exactly one value of wsdlInput.  For each output of the
+    atomic process, there must be exactly one value of wsdlOutput. These
+    property instances show the correspondences between OWL-S
+    inputs/outputs and WSDL message parts.  In addition, single values are
+    recommended (but not required) for wsdlInputMessage and
+    wsdlOutputMessage.
+
+    Note that the value of wsdlOperation may or may not uniquely identify
+    a particular WSDL port with which to interact.  If there are multiple
+    such ports offering the specified operation, an OWL-S enactment engine
+    is free to choose any of these ports.  If it is desired to further
+    constrain the choice of ports, a WsdlAtomicProcessGrounding may do so
+    by specifying any number of values for wsdlService and/or wsdlPort.
+  </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.daml.org/services/owl-s/1.2/Grounding.owl#WsdlGrounding -->
+
+    <owl:Class rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#WsdlGrounding">
+        <rdfs:subClassOf rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#Grounding"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#hasAtomicProcessGrounding"/>
+                <owl:allValuesFrom rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#WsdlAtomicProcessGrounding"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>
+    WsdlGrounding is A Grounding that grounds every process to 
+    a WSDL operation.    
+  </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.daml.org/services/owl-s/1.2/Grounding.owl#WsdlInputMessageMap -->
+
+    <owl:Class rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#WsdlInputMessageMap">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#DirectInputMessageMap"/>
+                    <rdf:Description rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#XSLTInputMessageMap"/>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#InputMessageMap"/>
+        <rdfs:subClassOf rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#WsdlMessageMap"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#wsdlMessagePart"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>
+	The purpose of a WsdlInputMessageMap is to show how to derive the WSDL
+	input message parts from the OWL-S Parameter values. There should be
+	one WsdlInputMessageMap for each WSDL input message part.
+	
+	There are two different kinds of input message maps:
+	
+	(1) DirectInputMessageMap - This is used when we have a 1-1 mapping between
+	Inputs in the AtomicProcess and WSDL message parts. There are two cases:
+	
+	(a) The parameterType of the Input is an OWL class.  The OWL class is
+	used as the message part type in the WSDL document.  (Note: for this
+	case to be fully general, further work may be needed to establish
+	conventions for serializing arbitrary OWL instances).
+	
+	(b) The parameterType is an XSD simple type, and the WSDL message part
+	has the same type.
+	
+	(2) XSLTInputMessageMap - This is used when the the parameterType and
+	the WSDL message part type is not the same. The WSDL type can be
+	either simple or complex.  In this case, a WSDL message part can be
+	derived from multiple Inputs.
+  </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.daml.org/services/owl-s/1.2/Grounding.owl#WsdlMessageMap -->
+
+    <owl:Class rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#WsdlMessageMap">
+        <rdfs:subClassOf rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#MessageMap"/>
+        <rdfs:comment>
+    MessageMap for WSDL inputs and outputs
+  </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.daml.org/services/owl-s/1.2/Grounding.owl#WsdlOperationRef -->
+
+    <owl:Class rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#WsdlOperationRef">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#portType"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#operation"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>
+    This class provides a unique specification of a WSDL operation.
+    WSDL 1.1, on which this version of the grounding is based, does 
+    not have a way to uniquely identify an operation with a single URI.  
+    Uniqueness is achieved using a pair (portType, operation).
+  </rdfs:comment>
+        <rdfs:comment>
+    Restricting the cardinality of portType to one
+  </rdfs:comment>
+        <rdfs:comment>
+    Restricting the cardinality of operation to one
+  </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.daml.org/services/owl-s/1.2/Grounding.owl#WsdlOutputMessageMap -->
+
+    <owl:Class rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#WsdlOutputMessageMap">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#DirectOutputMessageMap"/>
+                    <rdf:Description rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#XSLTOutputMessageMap"/>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#OutputMessageMap"/>
+        <rdfs:subClassOf rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#WsdlMessageMap"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#owlsParameter"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>
+	The purpose of WsdlOutputMessageMap is to show how to derive OWL-S
+	Parameter values from the WSDL output message parts. There should be
+	one WsdlOutputMessageMap for each Output of the corresponding
+	AtomicProcess.
+	
+	There are two kinds of output message maps, similarly to input message maps.
+	
+	(1) DirectOutputMessageMap - This is used when we have a 1-1 mapping between
+	WSDL message parts and Outputs in the Atomic Process. There are two cases:
+	
+	(a) The parameterType of the Output is an OWL class, and the OWL class
+	is used as the message part type in the WSDL document.  (Note: for
+	this case to be fully general, further work may be needed to establish
+	conventions for serializing arbitrary OWL instances).
+	
+	(b) The parameterType is an XSD simple type, and the WSDL message part
+	has the same type.
+	
+	(2) XSLTOutputMessageMap - This is used when the the parameterType and
+	the WSDL message part type is not the same. The WSDL type can be
+	either simple or complex.  In this case, an OWL Output can be derived
+	from multiple WSDL message parts.  
+  </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.daml.org/services/owl-s/1.2/Grounding.owl#XSLTInputMessageMap -->
+
+    <owl:Class rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#XSLTInputMessageMap">
+        <rdfs:subClassOf rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#WsdlInputMessageMap"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#xsltTransformation"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#owlsParameter"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.daml.org/services/owl-s/1.2/Grounding.owl#XSLTOutputMessageMap -->
+
+    <owl:Class rdf:about="http://www.daml.org/services/owl-s/1.2/Grounding.owl#XSLTOutputMessageMap">
+        <rdfs:subClassOf rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#WsdlOutputMessageMap"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#xsltTransformation"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl#wsdlMessagePart"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.2.2.1789) http://owlapi.sourceforge.net -->
+
